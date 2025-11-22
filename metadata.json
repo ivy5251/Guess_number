@@ -1,5 +1,5 @@
 {
-  "description": "A 1A2B (Bulls and Cows) guessing game powered by Gemini.",
+  "description": "A classic 1A2B (Bulls and Cows) guessing game.",
   "requestFramePermissions": [],
   "name": "App"
 }

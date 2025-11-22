@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 // --- Types ---
-type GameMode = 'menu' | 'ai-guessing' | 'user-guessing';
+type GameMode = 'menu' | 'computer-guessing' | 'user-guessing';
 type HistoryItem = {
   guess: string;
   a: number;
@@ -69,7 +68,7 @@ const Menu = ({ onSelectMode }: { onSelectMode: (mode: GameMode) => void }) => {
 
       <div className="grid gap-4 w-full">
         <button
-          onClick={() => onSelectMode('ai-guessing')}
+          onClick={() => onSelectMode('computer-guessing')}
           className="group relative w-full bg-indigo-600 hover:bg-indigo-700 text-white p-6 rounded-xl shadow-lg transition-all hover:shadow-xl text-left"
         >
           <div className="flex items-center justify-between">
@@ -104,8 +103,8 @@ const Menu = ({ onSelectMode }: { onSelectMode: (mode: GameMode) => void }) => {
   );
 };
 
-// --- AI Guessing Mode (Optimized for Speed) ---
-const AIGuessingGame = ({ onBack }: { onBack: () => void }) => {
+// --- Computer Guessing Mode (Pure Logic) ---
+const ComputerGuessingGame = ({ onBack }: { onBack: () => void }) => {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [candidates, setCandidates] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string | null>(null);
@@ -415,7 +414,7 @@ const App = () => {
   return (
     <>
       {mode === 'menu' && <Menu onSelectMode={setMode} />}
-      {mode === 'ai-guessing' && <AIGuessingGame onBack={() => setMode('menu')} />}
+      {mode === 'computer-guessing' && <ComputerGuessingGame onBack={() => setMode('menu')} />}
       {mode === 'user-guessing' && <UserGuessingGame onBack={() => setMode('menu')} />}
     </>
   );
